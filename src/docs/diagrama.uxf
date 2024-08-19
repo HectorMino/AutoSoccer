@@ -1,0 +1,264 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>500</x><y>1390</y><w>270</w><h>160</h></coordinates><panel_attributes>GoalkeeperBehaviour
+--
+- cont: int
+--
++ GoalkeeperBehaviour(pos: list[float]) : None
++ player_has_ball(): bool
++ free_teammate(forward_pass: bool): Player
++ flow() : None
++ action_blind() : None
++ follow_ball() : None
++ goal_kick() : None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>740</x><y>960</y><w>290</w><h>410</h></coordinates><panel_attributes>/_Behaviour_/
+--
+- pos: list[float]
+- player: Player
+- arco_line: list[list[float]]
+--
++ Behaviour(pos: list[float]) : None
++ get_pos(): list[float]
++ get_arco_line()
++ set_arco_line(rect)
++ set_pos(pos)
++ set_player(player)
++ flow() : None
++ stop_ball() : None
++ spin(angle: float) : bool
++ player_has_ball(): Player | None
++ free_path(pos: list[float]) : bool
++ free_teammate(forward_pass: bool) : Player
++ aim_and_kick() : None
++ aim_and_pass(target) : None
++ team_posession() : bool
++ hold_ball() : None
++ intercept(speed) : None
++ action_blind() : None
++ goal_kick() : None
++ out_of_game() : None
++ pos_in_goal_area_rs(pos: list[float]) : bool
++ pos_in_goal_area_ls(pos: list[float]) : bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1060</x><y>1390</y><w>370</w><h>260</h></coordinates><panel_attributes>_FieldPlayerBehaviour_
+--
+ - forwarding: [float] 
+ - lock: Lock
+--
++ FieldPlayerBehaviour(pos: list[float], forwarding: float) : None
++ try_score(): bool
++ try_move_forward(): bool
++ flow(): None
++ action_blind(): None
++ move_with_ball(angle: float): None
++ goal_kick(): None
++ out_of_game(): None
++ score(): None
++ ball_taken(): bool
++ unmark(): None
++ mark(): None
++ search_ball(): bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>270</y><w>300</w><h>960</h></coordinates><panel_attributes>_SoccerField_
+--
+- μ: float
+- state: str
+- team_1 : Team
+- team_2 : Team
+- last_score: int
+- team_1_score: int
+- team_2_score: int
+- ball_initial_pos: list[float]
+- ball : Ball
+- state_render: fontRender
+- score_line: fontRender
+- score_team_1: fontRender
+- score_team_2: fontRender
+- center_circle: list[Float]
++ middle_line: list[Float]
++ bottom_sideline: list[list[Float]]
++ upper_sideline: list[list[Float]]
++ left_endline: list[list[Float]]
++ right_endline: list[list[Float]]
++ top_left_corner: list[Float]
++ top_right_corner: list[Float]
++ bottom_left_corner: list[Float]
++ bottom_right_corner: list[Float]
++ ls_penalty_area_upper: list[list[Float]]
++ ls_penalty_area_bottom: list[list[Float]]
++ ls_penalty_area_singleline: list[list[Float]]
++ ls_goal_area_upper: list[list[Float]]
++ ls_goal_area_bottom: list[list[Float]]
++ ls_goal_area_singleline: list[list[Float]]
++ ls_arco_area_upper: list[list[Float]]
++ ls_arco_area_bottom: list[list[Float]]
++ ls_arco_area_singlelane: list[list[Float]]
++ ls_penalty_box_arc: list[Float]
++ ls_penalty_kick_mark: list[Float]
++ rs_penalty_area_upper: list[list[Float]]
++ rs_penalty_area_bottom: list[list[Float]]
++ rs_penalty_area_singleline: list[list[Float]]
++ rs_goal_area_upper: list[list[Float]]
++ rs_goal_area_bottom: list[list[Float]]
++ rs_goal_area_singleline: list[list[Float]]
++ rs_arco_area_upper: list[list[Float]]
++ rs_arco_area_bottom: list[list[Float]]
++ rs_arco_area_singlelane: list[list[Float]]
++ rs_penalty_box_arc: list[Float]
++ rs_penalty_kick_mark: list[Float]
++ background: pygame.Surface
+--
++ SoccerField(team_1, team_2, score: list[int]): None
++ change_gametime(): None
++ set_state(state: str): None
++ get_last_score(): int
++ get_state(): str
++ get_ball(): Ball
++ get_players(): list()
++ get_players_team(team): list()
++ get_team(team): None
++ draw(): None
++ draw_on_screen(screen): None
++ goal(): int
++ throw_in(): None
++ corner(): None
++ palo(): None
++ begin(): None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1130</x><y>230</y><w>280</w><h>230</h></coordinates><panel_attributes>_Fov_
+--
+- angle: float
+- pos: list[float]
+- extremo: list[float]
+- extremo_resta: list[float]
+- extremo_suma: list[float]
+--
++ Fov(angle: float, pos: list[float]): None
++ draw(): None
++ set_pos(pos: list[float]): None
++ set_angle(angle: float): None
++ is_sprite_at_view(sprite): bool
++ get_angle_to_object(target): float
++ get_angle_to_pos(target_pos: list[float]): float
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>670</x><y>1660</y><w>390</w><h>180</h></coordinates><panel_attributes>_DefenderBehaviour_
+--
+
+--
++ DefenderBehaviour(pos: list[float], forwarding: float): None
++ reject_ball(): None
++ try_move_forward(): bool
++ free_teammate(forward_pass: bool): Player
++ unmark(): None
++ mark(): Player
++ action_blind(): None
++ flow(): None
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1430</x><y>1660</y><w>490</w><h>180</h></coordinates><panel_attributes>_StrikerBehaviour_
+--
+- strike_pos: list[float]
+--
++ StrikerBehaviour(pos: list[float], forwarding: float, strike_pos: list[float]): None
++ set_pos(pos): None
++ goal_kick(): None
++ free_teammate_stk(): Player
++ action_blind(): None
++ flow(): None
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>840</x><y>1490</y><w>240</w><h>180</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>220;10;10;10;10;160</additional_attributes></element><element><id>Relation</id><coordinates><x>1420</x><y>1490</y><w>280</w><h>180</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;260;10;260;160</additional_attributes></element><element><id>Relation</id><coordinates><x>610</x><y>1180</y><w>140</w><h>230</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>120;10;10;10;10;210</additional_attributes></element><element><id>Relation</id><coordinates><x>1020</x><y>1170</y><w>260</w><h>240</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;240;10;240;220</additional_attributes></element><element><id>Relation</id><coordinates><x>150</x><y>100</y><w>290</w><h>190</h></coordinates><panel_attributes>lt=-
+m1=0..*
+m2=1..1</panel_attributes><additional_attributes>10;170;10;10;270;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>420</x><y>0</y><w>270</w><h>500</h></coordinates><panel_attributes>_Ball_
+--
+- lock: threading.Lock
+- field : SoccerField
+- last_pos: list[float]
+- pos: list[float]
+- coef: float
+- vector: (float, float)
+- cont: int
+- frozen: bool
+- last_touch: int
+- image : string
+- scaled_ball: pygame.Surface
+- img_rect: pygame.Rect
+--
++ Ball(pos: list[float], coef, field): None
++ get_vector(): (float, float)
++ reposition(pos: list[float]): None
++ draw(): None
++ reset_speed(): None
++ stop_ball(team_id, player): None
++ get_last_touch()
++ get_coef()
++ get_rect()
++ get_pos(): list[float]
++ get_speed(): float
++ get_angle(): float
++ get_angle_to_pos(target_pos: list[float]): float
++ alone(): bool
++ set_angle(angle: float): None
++ hit(angle, strength, player): None
+- apply_smooth_friction(vector): (float, float)
+- update(): None
+- calcnewpos(rect, vector): pygame.Rect
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>880</x><y>880</y><w>200</w><h>100</h></coordinates><panel_attributes>lt=-
+m1=0..*
+m2=0..1</panel_attributes><additional_attributes>10;80;10;10;180;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>390</x><y>550</y><w>390</w><h>310</h></coordinates><panel_attributes>_Team_
+--
+- name: str
+- side: int
+- field: SoccerField
+- player_list: list[Player]
+--
++ Team(name: str, goalkeeper: Player, behaviour: Behaviour): None
++ set_field(field: SoccerField): None
++ reset_players_speed(): None
++ get_field(): SoccerField
++ get_side(): int
++ add_player(player: Player, behaviour: Behaviour): None
++ get_name(): str
++ reposition(): None
++ set_side(side: int): None
++ draw(): None
++ get_side(): int
++ start(): None
++ get_player(number: int): Player
++ get_players(): list
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>290</x><y>630</y><w>120</w><h>40</h></coordinates><panel_attributes>lt=-
+m1=0..1
+m2=2..2</panel_attributes><additional_attributes>10;10;100;10</additional_attributes></element><element><id>Relation</id><coordinates><x>770</x><y>600</y><w>310</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=0..1
+m2=1..*</panel_attributes><additional_attributes>10;10;290;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1250</x><y>450</y><w>50</w><h>110</h></coordinates><panel_attributes>lt=-
+m1=1..1
+m2=1..1</panel_attributes><additional_attributes>10;90;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1060</x><y>540</y><w>420</w><h>630</h></coordinates><panel_attributes>_Player_
+--
+- name: str
+- pos: list[float]
+- speed: float
+- side: int
+- strength: float
+- image: str
+- fov: Fov
+- vector: tuple[float, float]
+- scaled_player: pygame.Surface
+- img_rect: pygame.Rect
+- team
+- lock
+--
++ Player(name: str, speed: float, strength: float, img_path: str): None
++ get_side(): int
++ set_side(old_side: int, new_side: int): None
++ get_name(): str
++ get_fov(): Fov
++ set_behaviour(behaviour: Behaviour): None
++ get_rect(): pygame.Rect
++ get_pos(): list[float]
++ set_pos(pos: list[float]): None
++ set_team(team): None
++ get_vector(): tuple[float, float]
++ get_team(): None
++ get_angle(): float
++ set_angle(angle: float): None
++ reposition(): None
++ draw(): None
++ set_speed(speed: float): None
++ get_speed(): float
++ get_strength(): float
++ run(): None
++ move_arquero(angle: float, speed: float): None
++ move(angle: float, speed: float): None
++ set_vector(vector: tuple[float, float]): None
++ update(): None
++ calcnewpos(rect: pygame.Rect, vector: tuple[float, float]): pygame.Rect
++ kick_with_angle(angle: float, strength: float): None
++ kick(target_pos: list[float], strength: float): None
++ stop_ball(): None
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>680</x><y>310</y><w>510</w><h>250</h></coordinates><panel_attributes>lt=&lt;..</panel_attributes><additional_attributes>490;230;490;190;240;190;240;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>770</x><y>720</y><w>90</w><h>260</h></coordinates><panel_attributes>lt=&lt;..</panel_attributes><additional_attributes>70;240;70;10;10;10</additional_attributes></element></diagram>
